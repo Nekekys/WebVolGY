@@ -392,7 +392,7 @@
 -->
 
 
-    <form class="container pt-3 pb-3" action="index.php" method="POST" name="fillter">
+    <form class="container pt-3 pb-3" action="index.php" method="GET" name="fillter">
         <div class="price d-flex align-items-center justify-content-center">
            <span style="padding-right: 8px;">Цена от: </span>
            <input style='width: 90px' class="form-control" type="number" name="ot">
@@ -425,70 +425,7 @@
             </thead>
             <tbody>
                 <?php
-                    define("DB_HOST", "localhost");
-                    define("DB_USER", "root");
-                    define("DB_PASSWORD", "");
-                    define("DB_NAME", "sportshop");
-                    $brandArray = array ("Camp","Norrona","Mammut","Gore-Tex","Haglofs");
-
-                    $mysql = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-                    if ($mysql->connect_errno) exit("ошибка подключения к БД");
-                    $mysql->set_charset('utf8');
-                    $query = "SELECT goods.name, goods.id_brand, goods.description, goods.cost, brands.name_brand, goods.img_path FROM goods INNER JOIN brands ON brands.id_brand = goods.id_brand";
-
-                    if((isset($_POST["name"]))||(isset($_POST["brand"]))||(isset($_POST["ot"]))||(isset($_POST["do"]))){
-            
-                    //if(($_POST["name"] != "")||($_POST["brand"] != "")||($_POST["ot"] != "")||($_POST["do"] != "")){
-                        $check = false;
-                        if($_POST["name"] != ""){
-                            $query .= " WHERE name LIKE '%".$_POST["name"]."%'";
-                            $check = true;
-                            echo "Название: ".$_POST["name"]."<br>";
-                        }
-                        if($_POST["brand"] != "0"){
-                            if($check){
-                                $query .= " AND goods.id_brand = '".$_POST["brand"]."'";
-                            }else{
-                                $query .= " WHERE goods.id_brand = '".$_POST["brand"]."'";
-                            }
-                            $check = true;
-                            echo "Брэнд: ".$brandArray[$_POST["brand"]-1]."<br>";
-                        }
-                        if($_POST["ot"] != ""){
-                            if($check){
-                                $query .= " AND goods.cost > ".$_POST["ot"];
-                            }else{
-                                $query .= " WHERE goods.cost > ".$_POST["ot"];
-                            }
-                            $check = true;
-                            echo "Цена больше: ".$_POST["ot"]."<br>";
-                        }
-                        if($_POST["do"] != ""){
-                            if($check){
-                                $query .= " AND goods.cost < ".$_POST["do"];
-                            }else{
-                                $query .= " WHERE goods.cost < ".$_POST["do"];
-                            }
-                            $check = true;
-                            echo "Цена меньше: ".$_POST["do"]."<br>";
-                        }
-                    }
-
-                    $result = $mysql->query($query);
-                    $i = 0;
-                    while ($row = $result->fetch_assoc()) {
-                        $i++;
-                        echo "<tr><th scope='row'><img src='".$row["img_path"]."' style='width: 80px'></th>
-                            <td>".$row['name']."</td>
-                            <td>".$row["name_brand"]."</td>
-                            <td>".$row['description']."</td>
-                            <td>".$row['cost']." руб.</td>
-                        </tr>";
-                    }
-                    if($i == 0){
-                        echo "Ничего не найденно(((";
-                    }
-                
+                    require "form.php";
                 ?>
             </tbody>
         </table>
