@@ -14,15 +14,15 @@ if ((isset($_GET["name"])) || (isset($_GET["brand"])) || (isset($_GET["ot"])) ||
     //if(($_POST["name"] != "")||($_POST["brand"] != "")||($_POST["ot"] != "")||($_POST["do"] != "")){
     $check = false;
     if ($_GET["name"] != "") {
-        $query .= " WHERE name LIKE '%" . $_GET["name"] . "%'";
+        $query .= " WHERE name LIKE '%" . addslashes($_GET["name"]) . "%'";
         $check = true;
         echo "Название: " . $_GET["name"] . "<br>";
     }
     if ($_GET["brand"] != "0") {
         if ($check) {
-            $query .= " AND goods.id_brand = '" . $_GET["brand"] . "'";
+            $query .= " AND goods.id_brand = '" . addslashes($_GET["brand"]) . "'";
         } else {
-            $query .= " WHERE goods.id_brand = '" . $_GET["brand"] . "'";
+            $query .= " WHERE goods.id_brand = '" . addslashes($_GET["brand"]) . "'";
         }
         $check = true;
         echo "Брэнд: " . $brandArray[$_GET["brand"] - 1] . "<br>";
