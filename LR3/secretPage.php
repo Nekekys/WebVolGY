@@ -14,9 +14,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <?php  require "header.php"; ?>
     <div class="mainSP">
         <h3 class="text-center">Здравствуйте, <?php echo $_SESSION['user']['name'] ?>, вы авторизованны</h3>
-        <a class="text-center d-block" href="index.php">На главную</a>
     </div>
     <form class="container pt-3 pb-3" action="secretPage.php" method="GET" name="fillter">
         <div class="price d-flex align-items-center justify-content-center">
