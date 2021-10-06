@@ -31,50 +31,50 @@
 
         if($email &&  $name && $last_name && $otchestvo && $date && $adress && $interests && $src_vk && $password && $password2 && $blood_type){
             if($password == $password2){
-                $BLLCheck = false;
-                $SLLCheck = false;
-                $length6Check = false;
-                $SSpecCheck = false;
-                $SSpaceCheck = false;
-                $SHyphenCheck = false;
-                $SUnderlineCheck = false;
-                $numberCheck = false;
-                $BNotCirilic = false;
-                $SNotCirilic = false;
+                $checkArr = [];
+              //  $BLLCheck = false;
+              //  $SLLCheck = false;
+              //  $length6Check = false;
+             //   $SSpecCheck = false;
+             //   $SSpaceCheck = false;
+             //   $SHyphenCheck = false;
+             //   $SUnderlineCheck = false;
+             //   $numberCheck = false;
+             //   $BNotCirilic = false;
+              //  $SNotCirilic = false;
                 
                 if((preg_match("#[0-9]+#",$password))){ 
-                    $numberCheck = true;
+                    $checkArr[] = 'numberCheck';
                 } 
                 if((preg_match("#[A-Z]+#",$password))){ 
-                    $BLLCheck = true;
+                    $checkArr[] = 'BLLCheck';
                 } 
                 if((preg_match("#[a-z]+#",$password))){ 
-                    $SLLCheck = true;
+                    $checkArr[] = 'SLLCheck';
                 } 
                 if((!preg_match("#[А-Я]+#",$password))){ 
-                    $BNotCirilic = true;
+                    $checkArr[] = 'BNotCirilic';
                 } 
                 if((!preg_match("#[а-я]+#",$password))){ 
-                    $SNotCirilic = true;
+                    $checkArr[] = 'SNotCirilic';
                 }   
                 if((preg_match("#[\W]+#",$password) )){ 
-                    $SSpecCheck = true;
+                    $checkArr[] = 'SSpecCheck';
                 }  
             
                 for($i = 0; $i <  strlen($password); $i++){
                         if(ord($password[$i]) == 45){
-                            $SHyphenCheck = true;
+                            $checkArr[] = 'SHyphenCheck';
                         }
                         if(ord($password[$i]) == 95){
-                            $SUnderlineCheck = true;
+                            $checkArr[] = 'SUnderlineCheck';
                         }
-                        if(ord($password[$i]) == 32){
-                            $SSpaceCheck = true;
+                        if(ord($password[$i]) == 32){ 
+                            $checkArr[] = 'SSpaceCheck';
                         }
                 }
 
-                if($BLLCheck && $SLLCheck && (strlen($password) > 6) && $SSpecCheck && $SSpaceCheck && $SHyphenCheck &&
-                $SUnderlineCheck && $numberCheck && $BNotCirilic && $SNotCirilic){
+                if((count($checkArr) == 9) && (strlen($password) > 6) ){
                     $password = password_hash($password, PASSWORD_DEFAULT);
                     $result = $mysql->query("SELECT `e-mail` FROM `users` WHERE `e-mail` = '$email'");
 
