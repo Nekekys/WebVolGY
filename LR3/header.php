@@ -32,8 +32,9 @@
                     </div>
                     <div class="signIn d-flex align-items-center">
                         <?php 
+
                             if($_SESSION['user']){
-                                echo '<span class="enter d-block" style="padding: 0 8px;">Вы зашли как, '.$_SESSION['user']['e-mail'].' </span><a href="logics/exit.php" style="text-decoration: underline;" class="enter">выход</a>';
+                                echo '<span class="enter d-block" style="padding: 0 8px;">Здравствуйте, '.$_SESSION['user']['name'].' </span><a href="logics/exit.php" style="text-decoration: underline;" class="enter">выход</a>';
                             }else{
                                 echo '<a href="login.php"  class="enter">вход</a>';
                             }

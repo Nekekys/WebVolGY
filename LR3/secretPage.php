@@ -1,5 +1,5 @@
 <?php 
-    session_start();
+    require "logics/connect.php";
     if(!$_SESSION['user']){
         header('Location: login.php');
     }
@@ -16,7 +16,12 @@
 <body>
     <?php  require "header.php"; ?>
     <div class="mainSP">
-        <h3 class="text-center">Здравствуйте, <?php echo $_SESSION['user']['name'] ?>, вы авторизованны</h3>
+        <h3 class="text-center">Здравствуйте, <?php
+            $id = $_SESSION['user']['id'];
+             $result = $mysql->query("SELECT * FROM `users` WHERE `id` = '$id'");
+             $user = mysqli_fetch_assoc($result);
+             echo $user['e-mail'];
+         ?>, выша почта</h3>
     </div>
     <form class="container pt-3 pb-3" action="secretPage.php" method="GET" name="fillter">
         <div class="price d-flex align-items-center justify-content-center">

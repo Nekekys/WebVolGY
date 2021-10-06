@@ -1,7 +1,4 @@
-<?php 
-    session_start();
-    error_reporting(0);
-?>
+<?php  require "logics/connect.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,8 +12,8 @@
 
 <body>
 
+    
     <?php  require "header.php"; ?>
-
    <!-- <form class="container pt-3 pb-3" action="index.php" method="GET" name="fillter">
         <div class="price d-flex align-items-center justify-content-center">
            <span style="padding-right: 8px;">Цена от: </span>
@@ -59,7 +56,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-    <script src="main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

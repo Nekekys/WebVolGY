@@ -33,6 +33,8 @@ body{
     margin-bottom: 0;
     text-align: center;
     max-width: 492px;
+    display: none;
+    cursor: pointer;
 }
 .erroeL{
     max-width: 253px;
