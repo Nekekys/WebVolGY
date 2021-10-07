@@ -7,7 +7,10 @@
 
 
         $num = (isset ($_SESSION["num"])) ? $_SESSION["num"] : 0;
-        if($num < 30){
+        if((time() - $time >= 60*60)&&($num >= 3)){
+            $num = 0;
+        }
+        if($num < 3){
             if($email && $password){
                 $result = $mysql->query("SELECT * FROM `users` WHERE `e-mail` = '$email'");
                 $id = $mysql->insert_id;
@@ -24,6 +27,7 @@
                     }else{
                         $num++;
                         $_SESSION["num"] = $num;
+                        $_SESSION["time"] = time();
                         $response = [
                             "check" => false,
                             "error" => "Неправильный пароль"
