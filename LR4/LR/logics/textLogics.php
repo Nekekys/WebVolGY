@@ -28,7 +28,7 @@
         $count = 1;
         $mainText = preg_replace_callback('/<img/',
         function($match) use (&$count) {
-            $str = "<a name='".$count."'></a><img";
+            $str = "<img id='".$count."' ";
             $count++;
             return $str;
         }
@@ -58,7 +58,7 @@
 
     //  $mainText = preg_replace('/(\b[а-я]+\b)(?=.*\1)/ui',"-",$mainText);
         
-        $textArr = preg_match_all('/(\b[а-я]+\b)/ui',$mainText, $matches);
+        $textArr = preg_match_all('/(\b\w+\b)/ui',$mainText, $matches);
         $matches[0] = array_unique($matches[0]);
         foreach($matches[0] as $elem){
             $count = 0;
