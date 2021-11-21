@@ -79,7 +79,7 @@
                         $strInsertIntoTable = '';
                         $i = 0;
                         $name = explode(".", basename($url));
-
+                        $quantity = 0;
 
                         //$result = $mysql->query("SELECT * FROM '".$name[0]."_imported'");
                         $result = $mysql->query("SELECT * FROM `".$name[0]."_imported`");
@@ -87,6 +87,7 @@
                             $arrayGUIDTable = array();  // массив guid из таблицы
                             while ($row = $result->fetch_assoc()){
                                 $k = 0;
+                                $quantity++;
                                 foreach($row as $key => $value){
                                     if($key == 'guid'){
                                         $arrayGUIDTable[] = $value;
@@ -134,12 +135,14 @@
                                        $t++;
                                     }
                                     $queryStr.=" WHERE guid = '".$value['guid']."'";
-                                    echo $queryStr;
                                     $result = $mysql->query($queryStr);
                                 }else{
+                                    $quantity++;
                                     $result = $mysql->query($strInsertIntoTable.$queryArray[$index]);
                                 }
                             }
+
+                            echo "Файл с данными получен из $url и обработан. Данные добавлены и обновлены в таблице $name[0]_imported. Количество записей: $quantity";
                         }else{
                             $i = 0;
                             foreach ($arrOfKeys as $el){
@@ -165,11 +168,11 @@
                            $result = $mysql->query($strCreateTable);
     
                             foreach ($queryArray as $index => $value){
+                                $quantity++;
                                 $result = $mysql->query($strInsertIntoTable.$value);
-                                echo $strInsertIntoTable.$value."\n";
                             }
                             
-                            echo "Файл с данными получен из $url и обработан. Создана таблица $name[0]_imported. Количество записей: $i";
+                            echo "Файл с данными получен из $url и обработан. Создана таблица $name[0]_imported. Количество записей: $quantity";
                         }
                         
                     }
