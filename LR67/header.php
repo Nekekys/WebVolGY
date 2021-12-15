@@ -6,22 +6,10 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="/lr/group.php">Группы</a>
+        <a class="nav-link" href="/lr/brands.php">Брэнды</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/lr/student.php">Студенты</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/lr/subject.php">Предметы</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/lr/groupsubject.php">Связи группа-предмет</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/lr/mark.php">Оценки</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/lr/">Рейтинг</a>
+        <a class="nav-link" href="/lr/goods.php">Товары</a>
       </li>
     </ul>
   </div>

@@ -4,8 +4,8 @@ const deleteMain = (id,page) =>{
     let result = confirm("Вы действительно хотите удалить запись?");
     if(result){
         $.ajax({
-            url: './'+ page +'/delete.php',
-            type: 'POST',
+            url: './'+ page +'/mainlogic.php',
+            type: 'DELETE',
             dateType: 'json',
             data: {
                 id
