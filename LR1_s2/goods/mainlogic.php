@@ -1,6 +1,5 @@
 <?php   
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/lr/logics/databaseClass.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/lr/logics/goodsClass.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/lr/classes/goodsClass.php');
     if($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['method'] === 'POST'){
         if ($_FILES && $_FILES["ava"]["error"] == UPLOAD_ERR_OK){
             $result = Goods::add($_POST['name'],$_POST['cost'],$_POST['des'],$_POST['brand'],$_FILES["ava"]["name"],$_FILES["ava"]["tmp_name"]);

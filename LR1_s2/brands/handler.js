@@ -8,7 +8,8 @@ $('#button').click(function(e){
             type: 'POST',
             dateType: 'json',
             data: {
-                name
+                name,
+                method: 'add'
             },
             success (data) {
                 console.log(data)
@@ -57,3 +58,43 @@ const editFunction = (id) =>{
     }
 }
 
+const delFunction = (id) =>{
+    $.ajax({
+        url: './mainlogic.php',
+        type: 'DELETE',
+        dateType: 'json',
+        data: {
+            id
+        },
+        success (data) {
+            data = $.parseJSON(data)
+            console.log(data)
+            if(data.check){
+                document.location.href = "/lr/brands.php"
+            }
+        }
+    })
+}
+
+const handOverFunction = (del_id) =>{
+    let selected_id = $('select[name = "brand"]').val()
+        $.ajax({
+            url: './mainlogic.php',
+            type: 'POST',
+            dateType: 'json',
+            data: {
+                selected_id,del_id,
+                method: 'handOver'
+            },
+            success (data) {
+                console.log(data)
+                data = $.parseJSON(data)
+                console.log(data)
+                if(data.check){
+                    document.location.href = "/lr/brands.php"
+                }else{
+                    $('#errorR').css({display: "block"}).text("Данные не загрузились");
+                }
+            }
+        })
+}

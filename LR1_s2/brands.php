@@ -1,6 +1,5 @@
 <?php  
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/lr/logics/databaseClass.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/lr/logics/brandClass.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/lr/classes/brandClass.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,9 +34,9 @@
                     $arr = Brand::show();
                     foreach( $arr as $elem){
                         echo "<tr><td>" . $elem['id_brand'] . "</td>
-                                <td>" . $elem['name_brand'] . "</td>
+                                <td><a href='goods.php?filter=".$elem['name_brand']."'>" . $elem['name_brand'] . "</a></td>
                                 <td><a href='brands/edit.php?id=".$elem['id_brand']."' type='button' class='btn btn-primary'>Редактировать</a></td>
-                                <td><button onclick='deleteMain(".$elem['id_brand'].", `brands`)' type='button' class='btn btn-danger'>Удалить</button></td>
+                                <td><a href='brands/handOver.php?id=".$elem['id_brand']."&name=".$elem['name_brand']."' type='button' class='btn btn-danger'>Удалить</a></td>
                             </tr>";
                     }
                 ?>

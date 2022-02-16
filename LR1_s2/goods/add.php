@@ -1,6 +1,5 @@
 <?php 
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/lr/logics/databaseClass.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/lr/logics/brandClass.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/lr/classes/brandClass.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

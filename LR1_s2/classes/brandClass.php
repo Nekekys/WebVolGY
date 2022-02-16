@@ -1,11 +1,10 @@
 <?php 
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/lr/classes/actionsClass.php');
+    
     class Brand{
        public static function add(string $name_) : array{
-        $mysql = Database::connection();
         if(isset($name_)){
-            $name = mysqli_real_escape_string($mysql,$name_);
-            $query = "INSERT INTO brands (`id_brand`, `name_brand`) VALUES ( NULL, '$name')";
-            $result = $mysql->query($query);
+            $result = ActionBrand::addAction($name_);
             if($result){
                 $response = [
                     "check" => true
@@ -27,12 +26,8 @@
         }
        }
        public static function edit(int $id_, string $name_) : array{
-        $mysql = Database::connection();
         if(isset($id_) and isset($name_)){
-            $id = mysqli_real_escape_string($mysql,$id_);
-            $name = mysqli_real_escape_string($mysql,$name_);
-            $query = "UPDATE brands SET  name_brand = '$name' WHERE id_brand = $id";
-            $result = $mysql->query($query);
+            $result = ActionBrand::editAction($id_, $name_);
             if($result){
                 $response = [
                     "check" => true
@@ -56,12 +51,8 @@
 
 
        public static function delete(int $id_) : array{
-        $mysql = Database::connection();
         if(isset($id_)){
-            $id = mysqli_real_escape_string($mysql,$id_);
-
-            $query = "DELETE FROM brands WHERE id_brand = $id";
-            $result = $mysql->query($query);
+            $result = ActionBrand::deleteAction($id_);
             if($result){
                 $response = [
                     "check" => true
@@ -85,26 +76,13 @@
        }
        
        public static function show() : array{
-        $mysql = Database::connection();
-        $query = "SELECT id_brand, name_brand  FROM brands ORDER BY id_brand";
-        $result = $mysql->query($query);
-        $arr = [];
-        while ($row = $result->fetch_assoc()) {
-            $arr[] = $row;
-        }
+        $arr = ActionBrand::showAction();
         return $arr;
        }
 
        public static function brandById(int $id_) : array{
-        $mysql = Database::connection();
         if(isset($id_)){
-            $id = mysqli_real_escape_string($mysql,$_GET['id']);
-            $query = "SELECT id_brand, name_brand  FROM brands WHERE id_brand = $id";
-            $result = $mysql->query($query);
-            $arr = [];
-            while ($row = $result->fetch_assoc()) {
-                $arr[] = $row;
-            }
+            $arr = ActionBrand::getByIdAction($id_);
             return $arr;
         }else{
             $response = [
@@ -112,7 +90,28 @@
             ];
             return $response;
         }
+       }
+       public static function handOver(int $selected_id, int $deleted_id) : array{
+        if(isset($selected_id) && isset($deleted_id)){
+            $result = ActionBrand::handOverAction($selected_id, $deleted_id);
+            if($result){
+                $response = [
+                    "check" => true
+                ];
+                return $response;
+            }else{
+                $response = [
+                    "check" => false
+                ];
+                return $response;
+            }
+        }else{
+            $response = [
+                "check" => false
+            ];
+            return $response;
         }
+       }
     }
 
 ?>
