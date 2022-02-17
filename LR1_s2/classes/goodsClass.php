@@ -103,8 +103,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/lr/classes/actionsClass.php');
         }
        }
        
-       public static function show() : array{
-        $arr = ActionGoods::showAction();
+       public static function show(int $id = 0) : array{
+        $arr = ActionGoods::showAction($id);
         return $arr;
        }
 

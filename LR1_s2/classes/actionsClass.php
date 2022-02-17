@@ -122,9 +122,14 @@
             $result = $mysql->query($query);
             return $result;
         }
-        public static function showAction() : array{
+        public static function showAction(int $id) : array{
             $mysql = Database::connection();
-            $query = "SELECT goods.id, goods.name,  goods.description, goods.cost, brands.name_brand, goods.img_path FROM goods INNER JOIN brands ON brands.id_brand = goods.id_brand ORDER BY id";
+            if ($id == 0){
+                $query = "SELECT goods.id, goods.name,  goods.description, goods.cost, brands.name_brand, goods.img_path FROM goods INNER JOIN brands ON brands.id_brand = goods.id_brand ORDER BY id";
+            }else{
+                $query = "SELECT goods.id, goods.name,  goods.description, goods.cost, brands.name_brand, goods.img_path FROM goods INNER JOIN brands ON brands.id_brand = goods.id_brand WHERE goods.id_brand = $id";
+            }
+
             $result = $mysql->query($query);
             $arr = [];
             while ($row = $result->fetch_assoc()) {
