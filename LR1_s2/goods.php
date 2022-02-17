@@ -34,17 +34,11 @@
             <tbody>
                 <?php
 
-                    $arr = Goods::show();
+                    
                     if(isset($_GET['filter'])){
-                        for($j = 0; $j < count($arr) - 1; $j++){
-                            for($i = 1; $i < count($arr); $i++){
-                                if($_GET['filter'] == $arr[$i]['name_brand']){
-                                    $row = $arr[$i];
-                                    $arr[$i] = $arr[$i - 1];
-                                    $arr[$i - 1] = $row;
-                                } 
-                            }
-                        }
+                        $arr = Goods::show($_GET['filter']);
+                    }else{
+                        $arr = Goods::show();
                     }
                     foreach( $arr as $elem){
                         echo "<tr><td>" . $elem['id'] . "</td>

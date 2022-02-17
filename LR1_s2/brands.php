@@ -34,7 +34,7 @@
                     $arr = Brand::show();
                     foreach( $arr as $elem){
                         echo "<tr><td>" . $elem['id_brand'] . "</td>
-                                <td><a href='goods.php?filter=".$elem['name_brand']."'>" . $elem['name_brand'] . "</a></td>
+                                <td><a href='goods.php?filter=".$elem['id_brand']."'>" . $elem['name_brand'] . "</a></td>
                                 <td><a href='brands/edit.php?id=".$elem['id_brand']."' type='button' class='btn btn-primary'>Редактировать</a></td>
                                 <td><a href='brands/handOver.php?id=".$elem['id_brand']."&name=".$elem['name_brand']."' type='button' class='btn btn-danger'>Удалить</a></td>
                             </tr>";
