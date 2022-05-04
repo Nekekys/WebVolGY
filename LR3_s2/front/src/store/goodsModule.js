@@ -1,7 +1,9 @@
 import axios from "axios";
+import store from "@/store/index";
 
 export default {
     state: {
+        filter: -1,
         goods: [
             // {
             //     id: 1,
@@ -32,6 +34,9 @@ export default {
     getters: {
         getAllGoods(state){
             return state.goods
+        },
+        getFilterGoods(state){
+            return state.filter
         }
     },
     mutations: {
@@ -42,7 +47,12 @@ export default {
             state.goods.push(payload)
         },
         addAllElementGoods(state,payload) {
-            state.goods = payload
+            if(state.filter != -1){
+                state.goods = payload.filter( e => e.brand == state.filter)
+            }else{
+                state.goods = payload
+            }
+
         },
         emitElementGoods(state,payload) {
             state.goods = state.goods.map( (e) => {
@@ -62,6 +72,9 @@ export default {
                 }
                 else return e
             })
+        },
+        emitFilter(state,payload){
+            state.filter = payload
         },
     },
     actions: {

@@ -245,11 +245,10 @@
         methods: {
             initialize () {
                 this.$store.dispatch("getGoodsAction");
-                this.main =  store.getters.getAllGoods;
+                //this.main =  store.getters.getAllGoods;
             },
 
             editItem (item) {
-
                 this.editedIndex = store.getters.getAllGoods.indexOf(item)
                 this.editedItem = Object.assign({}, item)
                 this.dialog = true

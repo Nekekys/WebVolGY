@@ -113,9 +113,16 @@
                     </v-icon>
                     <v-icon
                             small
+                            class="mr-2"
                             @click="deleteItem(item)"
                     >
                         mdi-delete
+                    </v-icon>
+                    <v-icon
+                            small
+                            @click="filterItem(item)"
+                    >
+                        mdi-filter
                     </v-icon>
                 </template>
                 <template v-slot:no-data>
@@ -197,6 +204,11 @@
 
                 this.main = obj
                 this.dialogDelete = true
+            },
+
+            filterItem (item) {
+                this.$store.commit("emitFilter",item.name)
+                this.$router.push('/')
             },
 
             deleteItemConfirm () {

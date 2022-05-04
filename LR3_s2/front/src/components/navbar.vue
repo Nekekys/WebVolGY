@@ -20,8 +20,17 @@
             <v-btn
                     elevation="2"
                     outlined
+                    class="mr-3"
             >
                 <router-link to="/brands">Брэнды</router-link>
+            </v-btn>
+            <v-btn
+                    elevation="2"
+                    color="blue-grey"
+                    @click="clearFilter"
+                    v-if="$store.getters.getFilterGoods != -1"
+            >
+                Отчистить фильтр
             </v-btn>
 
         </v-app-bar>
@@ -30,7 +39,13 @@
 
 <script>
     export default {
-        name: 'nav-bar'
+        name: 'nav-bar',
+        methods: {
+            clearFilter(){
+                this.$store.commit("emitFilter",-1)
+                this.$store.dispatch("getGoodsAction");
+            }
+        }
     }
 </script>
 
